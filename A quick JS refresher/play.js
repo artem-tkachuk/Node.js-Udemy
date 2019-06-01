@@ -1,11 +1,11 @@
-const name = 'Artem';
+const myName = 'Artem';
 const hasHobbies = true;
 
-let age = 18;
-console.log(age);
-age = 19;
+let myAge = 18;
+console.log(myAge);
+myAge = 19;
 
-//name = 'Art';     Doesn't work because const value cannot be changed
+//myName = 'Art';     Doesn't work because const value cannot be changed
 
 const summarizeUser = (userName, userAge, userHasHobby) => {
     //'this' behaves differently comparing with the usual function (if arrow function is used)
@@ -19,7 +19,7 @@ const summarizeUser = (userName, userAge, userHasHobby) => {
     );
 };
 
-console.log(summarizeUser(name, age, hasHobbies));
+console.log(summarizeUser(myName, myAge, hasHobbies));
 
 const add = (a, b) => a + b;
 const addOne = a => a + 1;
@@ -51,3 +51,32 @@ console.log(hobbies.map(hobby => 'Hobby: ' + hobby));
 
 hobbies.push('Programming');
 console.log(hobbies);
+
+//Spread operator
+/*const copiedArray = hobbies.slice();
+const copiedArray = [hobbies];*/
+const copiedArray = [...hobbies];
+console.log(copiedArray);
+
+const copiedPerson = {...person};
+console.log(copiedPerson);
+
+
+//rest operator
+const toArray = (...args) => args;
+console.log(toArray(1, 2, 3, 4));
+
+
+//destructuring
+const printName = ({name, greet}) => {
+  console.log(name, greet());
+};
+
+printName(person);
+
+
+const {name, age} = person;
+console.log(name, age);
+
+const [hobby1, hobby2] = hobbies;
+console.log(hobby1, hobby2);
