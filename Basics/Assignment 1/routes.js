@@ -61,18 +61,15 @@ const requestHandler = (req, res) => {
         });
 
         req.on('end', () => {
-            const parsedBody = Buffer.concat(body).toString();
-            const message = parsedBody.split('=')[1];
+            const parsedBody = Buffer.concat(body).toString();  //username=abc
+            const message = parsedBody.split('=')[1];  //abc
             console.log(message);
-            return res.end();
         });
-    }
 
-    //default behaviour
-    const greetingMessage = 'Hello from my first Node.js course assignment!';
-    res.setHeader('Content-Type', 'text/html');
-    res.write(greetingMessage);
-    res.end();
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        res.end();
+    }
 };
 
 exports.handler = requestHandler;
