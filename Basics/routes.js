@@ -1,6 +1,5 @@
 const fs = require('fs');
 
-
 const formHTML = () => {
     return `
         <!DOCTYPE html>
@@ -19,7 +18,6 @@ const formHTML = () => {
         </html>
     `;
 };
-
 const textHTML = () => {
     return `
         <!DOCTYPE html>
@@ -30,7 +28,7 @@ const textHTML = () => {
              </head>
              
             <body>
-                <h1>Hello from my first Node.js application!</h1>
+                <h1>Hello from my first Node.js application!!</h1>
             </body>
         </html>
     `;
@@ -64,7 +62,6 @@ const requestHandler = (req, res) => {
                 return res.end();
             });
         });
-
     }
 
     res.setHeader('Content-Type', 'text/html');
