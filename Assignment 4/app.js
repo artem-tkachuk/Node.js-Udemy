@@ -1,21 +1,30 @@
 const path = require('path');
 
 const express = require('express');
+
 const bodyParser = require('body-parser');
 
-const routes = require('./routes/assignmentRoutes');
-const rootDir = require('./util/path');
+const routes = require('./routes/routes');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Routes
 app.use(routes);
 
-//404 error (page not found) handling
+//404
 app.use((req, res, next) => {
-    const path404 = path.join(__dirname, 'views', '404.html');
-    res.status(404).sendFile(path404);
+    const parameters = {
+      pageTitle: '404 Page not found!',
+      path: '/'
+    };
+    res.status(404).render('404', parameters);
 });
+
 
 app.listen(3000);
