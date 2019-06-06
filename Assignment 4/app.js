@@ -21,10 +21,9 @@ app.use(routes);
 app.use((req, res, next) => {
     const parameters = {
       pageTitle: '404 Page not found!',
-      path: '/'
+      path: '/404'
     };
     res.status(404).render('404', parameters);
 });
-
 
 app.listen(3000);

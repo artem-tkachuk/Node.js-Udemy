@@ -5,8 +5,12 @@
     <body>
         <%- include('includes/navigation.ejs') %>
         <ul>
-            <% for(let user of users) { %>
-                    <li><%= user.name %></li>
+            <% if (users.length > 0) { %>
+                <% for(let user of users) { %>
+                        <li><%= user.name %></li>
+                <% } %>
+            <% } else { %>
+                <h1>No users entered yet!</h1>
             <% } %>
         </ul>
 

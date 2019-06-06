@@ -20,6 +20,7 @@ router.get('/users', (req, res, next) => {
     res.render('displayUsers', parameters);
 });
 
+//form submitted
 router.post('/users', (req, res, next) => {
     users.push({name: req.body.name});
     res.redirect('/users');
