@@ -6,7 +6,11 @@ const users = [];
 router.get('/', (req, res, next) => {
     const parameters = {
         pageTitle: 'Username input',
-        path: '/'
+        path: '/',
+        formCSS: true,
+        usersCSS: true,
+        activeDisplayUsers: false,  //making it explicit
+        activeFormInput: true
     };
     res.render('formInput', parameters);
 });
@@ -15,7 +19,12 @@ router.get('/users', (req, res, next) => {
     const parameters = {
         pageTitle: 'Table of users',
         path: '/users',
-        users: users
+        users: users,
+        formCSS: true,
+        usersCSS: true,
+        activeDisplayUsers: true,
+        activeFormInput: false,
+        hasUsers: users.length > 0
    };
     res.render('displayUsers', parameters);
 });

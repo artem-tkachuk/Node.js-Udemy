@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        title #{ pageTitle }
+        link(rel="stylesheet", type = "text/css", href="css/main.css")
+        block styles
+
+    body
+
+        header.main-header
+            nav.main-header__nav
+                ul.main-header__item-list
+                    li.main-header__item
+                        a(href="/", class = (path === '/' ? 'active' : '')) Username input
+                    li.main-header__item
+                        a(href="/users", class = (path === '/users' ? 'active' : '')) Display Users
+
+        block content

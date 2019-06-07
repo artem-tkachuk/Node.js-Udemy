@@ -1,0 +1,10 @@
+extends layouts/main-layout
+
+block styles
+    link(rel="stylesheet", type = "text/css", href = "css/formInput.css")
+
+block content
+    form(action="/users", method="POST")
+        label(for="name") Username
+        input(type="text", name="name")
+        button(type="submit") Send

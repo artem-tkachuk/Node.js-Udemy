@@ -1,0 +1,13 @@
+extends layouts/main-layout
+
+block styles
+    link(rel="stylesheet", type = "text/css", href = "css/displayUsers.css")
+
+block content
+    main
+        ul
+            if users.length > 0
+                each user in users
+                    li #{user.name}
+            else
+                h1 No users entered

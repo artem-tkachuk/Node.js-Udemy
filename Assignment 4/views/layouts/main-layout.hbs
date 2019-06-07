@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ pageTitle }}</title>
+        <link rel = "stylesheet" href="css/main.css">
+        {{# if usersCSS }}
+            <link rel="stylesheet" href="css/displayUsers.css">
+        {{/if}}
+
+        {{#if formCSS }}
+            <link rel = "stylesheet" href = "css/formInput.css">
+        {{/if}}
+    </head>
+
+    <body>
+        <header class = "main-header">
+            <nav class = "main-header__nav">
+                <ul class = "main-header__item-list">
+                    <li class = "main-header__item"><a class = "{{#if activeFormInput }}active{{/if}}" href = "/">Username input</a></li>
+                    <li class="main-header__item"><a class="{{#if activeDisplayUsers }}active{{/if}}" href = "/users">Display Users</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        {{{ body }}}
+
+    </body>
+</html>

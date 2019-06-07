@@ -1,0 +1,11 @@
+<main>
+    <ul>
+        {{#if hasUsers}}
+            {{#each users as |user|}}
+                <li>{{user.name}}</li>
+            {{/each}}
+        {{else}}
+            <h1>No users entered yet!</h1>
+        {{/if}}
+    </ul>
+</main>
