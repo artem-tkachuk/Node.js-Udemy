@@ -22,6 +22,15 @@ module.exports = class Product {
         this.price = price;
     }
 
+    saveEdit() {
+        getProductsFromFile(products => {
+            products.push(this);
+            fs.writeFile(p, JSON.stringify(products), (err) => {
+                console.log(err);
+            });
+        });
+    }
+
     save() {
         this.id = Math.random().toString();
         getProductsFromFile(products => {
