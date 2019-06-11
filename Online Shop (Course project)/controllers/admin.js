@@ -15,6 +15,7 @@ exports.getProducts = (req, res, next) => {
 };
 
 
+
 exports.getAddProduct = (req, res, next) => {
 
     const parameters = {
@@ -27,15 +28,16 @@ exports.getAddProduct = (req, res, next) => {
 
 };
 
-
 exports.postAddProduct = (req, res, next) => {
-    const product = new Product(req.body.title, req.body.imageUrl, req.body.description, req.body.price);
+
+    const product = new Product(null, req.body.title, req.body.imageUrl, req.body.description, req.body.price);
 
     product.save();
 
     res.redirect('/');
 
 };
+
 
 
 exports.getEditProduct = (req, res, next) => {
@@ -66,24 +68,27 @@ exports.getEditProduct = (req, res, next) => {
 
 };
 
-
 exports.postEditProduct = (req, res, next) => {
 
     //TODO make it so the update button is not active until the admin changes something
 
-    const prodID = req.body.productID;
+    const updatedProduct = new Product(req.body.productID, req.body.title, req.body.imageUrl, req.body.description, req.body.price);
 
-    Product.findById(prodID, (product) => {
+    updatedProduct.save();
 
-        product.title = req.body.title;
-        product.imageUrl = req.body.imageUrl;
-        product.price = req.body.price;
-        product.description = req.body.description;
+    res.redirect('/admin/products');
 
-        product.saveEdit();
+};
 
-        res.redirect('/admin/products');
 
-    });
+
+exports.postDeleteProduct = (req, res, next) => {
+
+    //TODO what if this product does not exist in the db? I mean hard typing the URL can crash everything
+
+    Product.deleteById(req.body.productID);
+
+    res.redirect('/admin/products');
+
 
 };

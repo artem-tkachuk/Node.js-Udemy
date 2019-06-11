@@ -45,4 +45,47 @@ module.exports = class Cart {
 
         });
     }
+
+    static deleteProduct(id, productPrice) {
+
+        fs.readFile(p, (err, fileContent) => {
+            if (err) {
+                return;
+            }
+
+            const updatedCart = {...JSON.parse(fileContent)};
+
+            const product = updatedCart.products.find(prod => prod.id === id);
+
+            if (!product) {     //important fix of the bug of deleting the product that is in the products list, but not in the cart
+                return;
+            }
+
+            const productQuantity = product.quantity;
+
+            updatedCart.products = updatedCart.products.filter(prod => prod.id !== id);
+
+            updatedCart.totalPrice -= productQuantity * +productPrice;
+
+            fs.writeFile(p, JSON.stringify(updatedCart), (err) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+
+        });
+    }
+
+    static getCart(callback) {
+        fs.readFile(p, (err, fileContent) => {
+            const cart = JSON.parse(fileContent);
+
+            if (err) {
+                callback(null);
+            } else {
+                callback(cart);
+            }
+
+        });
+    }
 };
