@@ -5,7 +5,8 @@ const rootDir = require('../util/path');
 const p = path.join(rootDir, 'data', 'cart.json');
 
 
-module.exports = class Cart {
+module.exports = class Cart {                       //TODO понять, как работает
+
     static addProduct(id, productPrice) {
         // Fetch the previous cart
         fs.readFile(p, (err, fileContent) => {
@@ -88,4 +89,5 @@ module.exports = class Cart {
 
         });
     }
+
 };
