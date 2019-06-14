@@ -1,11 +1,50 @@
-/*const fs = require('fs');
+const Sequelize = require('sequelize');
+
+const sequelize = require('../util/database');
+
+const Cart = require('./cart');
+
+
+
+const Product = sequelize.define('product', {
+
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+
+    title: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    price: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    description: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+
+});
+
+module.exports = Product;
+
+/*
+const fs = require('fs');
 const path = require('path');
 
 const rootDir = require('../util/path');
-const p = path.join(rootDir, 'data', 'products.json');*/
-const db = require('../util/database');
-
-const Cart = require('./cart');
+const p = path.join(rootDir, 'data', 'products.json');
 
 /*const getProductsFromFile = callback => {
     fs.readFile(p, (err, fileContent) => {
@@ -14,7 +53,7 @@ const Cart = require('./cart');
         }
         callback(JSON.parse(fileContent));
     });
-};*/
+};
 
 module.exports = class Product {
 
@@ -27,7 +66,7 @@ module.exports = class Product {
     }
 
     save() {
-        /*getProductsFromFile(products => {
+        getProductsFromFile(products => {
 
             if (this.id) {
                 const existingProductIndex = products.findIndex(prod => prod.id === this.id);
@@ -53,7 +92,7 @@ module.exports = class Product {
                 });
 
             }
-        });*/
+        });
         return db.execute(
             'INSERT INTO products (title, price, description, imageUrl) VALUES (?, ?, ?, ?)',
             [this.title, this.price, this.description, this.imageUrl]
@@ -73,20 +112,21 @@ module.exports = class Product {
                 }
             });
 
-        });*/
+        });
     }
 
     static fetchAll() {
-        /*getProductsFromFile(callback);*/
+        getProductsFromFile(callback);
         return db.execute(`SELECT * FROM products`);
     }
 
     static findById(id) {
-        /*getProductsFromFile(products => {
+        getProductsFromFile(products => {
              const product = products.find(p => p.id === id);
              callback(product);
-        });*/
+        });
         return db.execute(`SELECT * FROM products WHERE products.id = ?`, [id]);
     }
 
 };
+*/
